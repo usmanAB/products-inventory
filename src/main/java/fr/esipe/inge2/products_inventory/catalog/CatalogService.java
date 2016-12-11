@@ -21,7 +21,7 @@ public class CatalogService {
 
 	public List<ProductCatalog> getProductCatalog() {
 			
-			return (List<ProductCatalog>) products.values();
+			return new ArrayList<>(products.values());
 		}
 	
 	
@@ -32,8 +32,8 @@ public class CatalogService {
 	}
 
 
-	public List<ProductCatalog> getProductById(String id) {
+	public ProductCatalog getProductById(String id) {
 			
-			return (List<ProductCatalog>) products.get(id);
+			return products.get(id);
 		}
 }

@@ -1,6 +1,7 @@
 package fr.esipe.inge2.products_inventory.catalog;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -20,15 +21,16 @@ public class CatalogServiceTest {
 	@Mock CatalogGateway catalogGateway;
 	@InjectMocks CatalogService catalogServiceSUT;
 	
+	@Before
 	public void wedontknowyet(){
 		//Arrange
 		List<ProductCatalog> listProduitsMocked = new ArrayList<ProductCatalog>();
 		ProductCatalog mocked = new ProductCatalog();
-		mocked.setId("MYID");
-		mocked.setRef("XYZ");
+		mocked.setId("5");
+		mocked.setRef("chiffre");
 		listProduitsMocked.add(mocked);
 		
-		when(catalogGateway.getCatalogFromServer()).thenReturn(listProduitsMocked);
+		when(catalogGateway.getCatalogFromServer()).thenReturn(listProduitsMocked);//on fixe le comportement du mock
 		
 		
 		//Act
@@ -42,14 +44,14 @@ public class CatalogServiceTest {
 	
 	@Test
 	public void shouldReturnAlistFrom(){
-		List<ProductCatalog> products = catalogServiceSUT.getProductCatalog();
-		Assert.assertTrue(products.get(0).getRef().equals("XYZ"));
+		List<ProductCatalog> products = catalogServiceSUT.getProductCatalog();//recuperer le catalogue
+		Assert.assertTrue(products.get(0).getRef().equals("chiffre"));
 	}
 	
 	@Test
 	public void shouldReturnProduct(){
-		ProductCatalog myProduct = (ProductCatalog) catalogServiceSUT.getProductById("MYID"); //recuperer le produit
-		Assert.assertTrue(myProduct.getRef().equals("XYZ"));
+		ProductCatalog myProduct = catalogServiceSUT.getProductById("5");  //recuperer le produit
+		Assert.assertTrue(myProduct.getRef().equals("chiffre"));
 	}
 	
 }
